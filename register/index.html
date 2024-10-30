@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Register - StockFlow</title>
+</head>
+<body>
+    <header>
+        <div class="button">
+            <a class="back" href="../main-page/index.html">VOLTAR</a>
+        </div>
+
+        <h1>CADASTRAR</h1>
+
+        <div class="logo">
+            <img src="../imgs/logo reduced.png" class="logoImg">
+        </div>
+    </header>
+
+    <div class="sec">
+        <div class="sec-register">
+            <form id="registerForm">
+                <div class="prod-form">
+                    <div class="prod-info">
+                        <h1>NOME DO PRODUTO</h1>
+                        <input id="productName" type="text">
+                    </div>
+                    <div class="prod-info">
+                        <h1>QUANTIDADE</h1>
+                        <input id="quantity" type="text">
+                    </div>
+                    <div class="prod-info">
+                        <h1>PREÇO</h1>
+                        <input id="price" type="number">
+                    </div>
+                    <div class="prod-info">
+                        <h1>DESCRIÇÃO</h1>
+                        <input id="description" type="text">
+                    </div>
+
+                    <div class="button">
+                        <button id="register" type="submit" class="register">CADASTRAR</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../backend/main.js"></script>
+</body>
+</html>
