@@ -25,19 +25,19 @@
                 <div class="prod-form">
                     <div class="prod-info">
                         <h1>NOME DO PRODUTO</h1>
-                        <input id="productName" type="text">
+                        <input id="productName" type="text" required="true">
                     </div>
                     <div class="prod-info">
                         <h1>QUANTIDADE</h1>
-                        <input id="quantity" type="text">
+                        <input id="quantity" type="number" required="true" min="0" value="0" step="0.010">
                     </div>
                     <div class="prod-info">
                         <h1>PREÇO</h1>
-                        <input id="price" type="number">
+                        <input id="price" type="number" required="true" min="0" value="0" step="0.010">
                     </div>
                     <div class="prod-info">
                         <h1>DESCRIÇÃO</h1>
-                        <input id="description" type="text">
+                        <input id="description" type="text" required="true">
                     </div>
 
                     <div class="button">
