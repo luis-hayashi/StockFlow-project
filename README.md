@@ -1,6 +1,6 @@
 Hi!
 
-Before you install the website application and use-it, make sure to install =
+Before you install the website application and use-it, make sure to install <br>
 <a href="https://nodejs.org/en">NodeJS</a>
 
 Once installed, open these commands on terminal.
