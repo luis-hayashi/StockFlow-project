@@ -68,8 +68,9 @@ h1 {
 .prod-info {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 100px;
+    width: 100%;
 }
 
 .prod-info input {
