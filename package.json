@@ -13,6 +13,9 @@
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.1",
+    "fs": "^0.0.1-security",
+    "pdfkit": "^0.15.1",
+    "pipe": "^1.1.0",
     "sqlite3": "^5.1.7"
   }
 }
