@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+body {
+    background: #999999;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoImg {
+    width: 300px;
+}
+
+.back {
+    text-decoration: none;
+    color: #fff;
+    font-size: 45px;
+    background: #000;
+    padding: 15px 30px;
+    border-radius: 100px;
+    transition: .25s;
+}
+
+.back:hover {
+    padding: 20px 35px;
+    transition: .25s;
+}
+
+.back:active {
+    padding: 12.5px 22.5px;
+    font-size: 42.5px;
+    background: #CDCDCD;
+    transition: .5s;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+.sec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sec-consult {
+    display: flex;
+    background: #cdcdcd;
+    width: 80vw;
+    height: 60vh;
+    border-radius: 25px;
+    padding: 20px;
+    overflow-y: auto;
+    justify-content: center;
+    
+}
+
+li {
+    display: flex;
+    font-size: 32px;
+    align-items: center;
+    gap: 25px;
+}
+
+.editBt {
+    font-size: 12px;
+    padding: 0;
+    background: none;
+    color: #000;
+}
+
+.editBt:hover {
+    padding: 0;
+    font-size: 24px;
+}
+
+.productList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+}
+
+.product-item {
+    margin-bottom: 16px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+div h3 {
+    font-size: 1.9rem;
+}
+
+div p {
+    font-size: 1.5rem;
+}
+
+.product-item:last-child {
+    border-bottom: none;
+}
+
+button { 
+    color: #fff;
+    background: #000;
+    outline: none;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    transition: .2s;
+}
+
+div button {
+    color: #fff;
+    background: #000;
+    outline: none;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    transition: .2s;
+    font-size: 20px;
+}
+
+button:hover {
+    padding: 12px;
+    cursor: pointer;
+    transform: .2s;
+}
+
+.product-info {
+    text-align: center;
+}

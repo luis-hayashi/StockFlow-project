@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Edit - StockFlow</title>
+</head>
+<body>
+    <header>
+        <div class="button">
+            <a class="back" href="../index.html">VOLTAR</a>
+        </div>
+
+        <h1>EDITAR</h1>
+
+        <div class="logo">
+            <img src="../imgs/logo reduced.png" class="logoImg">
+        </div>
+    </header>
+
+    <div class="sec">
+        <div class="sec-register">
+            <form id="editarForm" method="POST">
+                <div class="prod-form">
+                    <div class="prod-info">
+                        <h1>NOME DO PRODUTO</h1>
+                        <input id="nome" name="nome" type="text" required="true">
+                    </div>
+                    <div class="prod-info">
+                        <h1>QUANTIDADE</h1>
+                        <input id="quantidade" name="quantidade" type="number" required="true" min="0" value="0" step="0.010">
+                    </div>
+                    <div class="prod-info">
+                        <h1>PREÇO</h1>
+                        <input id="preco" name="preco" type="number" required="true" min="0" value="0" step="0.010">
+                    </div>
+                    <div class="prod-info">
+                        <h1>DESCRIÇÃO</h1>
+                        <input id="descricao" name="descricao" type="text" required="true">
+                    </div>
+
+                    <div class="button">
+                        <button id="register" type="submit" class="register">EDITAR</button>
+                    </div>
+                </div>
+            </form>
+            <div id="mensagem"></div>
+        </div>
+    </div>
+    <script>
+        const produtoId = new URLSearchParams(window.location.search).get("id");
+
+        // Buscar dados do produto quando a página carregar
+        fetch(`/produto/${produtoId}`)
+            .then(response => response.json())
+            .then(produto => {
+                document.getElementById('nome').value = produto.nome;
+                document.getElementById('preco').value = produto.preco;
+                document.getElementById('quantidade').value = produto.quantidade;
+                document.getElementById('descricao').value = produto.descricao;
+            })
+            .catch(error => console.error('Erro:', error));
+
+        // Função para salvar as alterações
+        document.getElementById('editarForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const preco = parseFloat(document.getElementById('preco').value);
+            const quantidade = parseInt(document.getElementById('quantidade').value);
+            const descricao = document.getElementById('descricao').value;
+
+            fetch(`/produto/${produtoId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, preco, quantidade, descricao })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Produto atualizado com sucesso!");
+                window.location.href = '/consult/index.html';
+            })
+            .catch(error => console.error('Erro:', error));
+        });    
+    </script>
+</body>
+</html>

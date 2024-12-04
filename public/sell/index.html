@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sell - StockFlow</title>
+</head>
+<body>
+    <header>
+        <div class="button">
+            <a class="back" href="../index.html">VOLTAR</a>
+        </div>
+
+        <h1>VENDER</h1>
+
+        <div class="logo">
+            <img src="../imgs/logo reduced.png" class="logoImg">
+        </div>
+    </header>
+
+    <div class="sec">
+        <div class="sec-register">
+            <form id="sellPost" method="post">
+                <div class="prod-form">
+                    <div class="prod-info">
+                        <h1>ID DO PRODUTO</h1>
+                        <input type="number" id="id" required>
+                    </div>
+                    <div class="prod-info">
+                        <h1>QUANTIDADE</h1>
+                        <input type="number" id="quantidade" required>
+                    </div>
+
+                    <div class="button">
+                        <button class="register" onclick="abrirPDF()">VENDER</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+            document.getElementById("sellPost").addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const quantidade = parseInt(document.getElementById('quantidade').value);
+        const id = parseInt(document.getElementById('id').value);
+
+        // Realiza a venda do produto
+        fetch(`/produto/sell/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ quantidade })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(`Erro: ${data.error}`);
+            } else {
+                alert("Produto vendido com sucesso!");
+
+                // Gera o PDF com os dados da venda
+                fetch(`/produto/sell/pdf/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nome: "Nome do Produto", // Substituir pelo valor real do produto vendido
+                        preco: 123.45,          // Substituir pelo valor real
+                        quantidade: quantidade,
+                        descricao: "Descrição do Produto" // Substituir pela descrição real
+                    })
+                })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('Erro ao gerar o PDF');
+                    }
+                    return res.blob();
+                })
+                .then(blob => {
+                    // Cria um link para o download do PDF
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'comprovante-venda.pdf';
+                    link.click();
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch(error => console.error('Erro:', error));
+            }
+        })
+        .catch(error => console.error('Erro:', error));
+    });
+    </script>
+</body>
+</html>
