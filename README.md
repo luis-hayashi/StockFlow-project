@@ -8,6 +8,8 @@ Once installed, open these commands on terminal.
 <li><USER\Desktop\Stockflow>: npm init -y</li>
 <li><USER\Desktop\Stockflow>: npm install express sqlite3</li>
 <li><USER\Desktop\Stockflow>: npm install cors body-parser</li>
+<li><USER\Desktop\Stockflow>: npm install pdfkit</li>
+<li><USER\Desktop\Stockflow>: npm install fs</li>
 
 Now, you'll be able to init the website program.
 
