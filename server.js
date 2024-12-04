@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+let fs = require('fs');
+const PDFDocument = require("pdfkit");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -146,12 +149,56 @@ app.put('/produto/sell/:id', (req, res) => {
                     }
                     res.json({ message: "Produto vendido com sucesso." });
                 })
+                
             }else if(actualQuantity < quantidade){
                 return res.status(400).json({ error: "Não há quantidade suficiente no estoque!" });
             }
         }
     })
 })  
+
+app.post('/produto/sell/pdf/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const { quantidade } = req.body;
+
+    if (id === undefined || quantidade === undefined) {
+        return res.status(400).json({ error: 'Dados inválidos' });
+    }
+
+    const query = `SELECT * FROM produtos WHERE id = ?`;
+    db.get(query, [id], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        if (!row) {
+            return res.status(404).json({ error: "Produto não encontrado." });
+        }
+
+        // Cria um documento PDF
+        const doc = new PDFDocument();
+
+        // Configura cabeçalhos para exibir o PDF no navegador
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'inline; filename="comprovante.pdf"');
+
+        // Envia o PDF diretamente para o cliente
+        const price = row.preco * quantidade;
+
+        doc.fontSize(20).text('Comprovante de Venda', { align: 'center' });
+        doc.moveDown();
+        doc.fontSize(14).text(`Produto: ${row.nome}`);
+        doc.text(`Preço total: R$ ${price.toFixed(2)}`);
+        doc.text(`Quantidade: ${quantidade}`);
+        doc.text(`Descrição: ${row.descricao}`);
+        doc.moveDown();
+        doc.text('Obrigado pela sua compra!', { align: 'center' });
+
+        // Finaliza e envia o PDF como resposta
+        doc.pipe(res);
+        doc.end();
+    });
+});
+
 
 // Iniciar o servidor
 const PORT = 3000;
