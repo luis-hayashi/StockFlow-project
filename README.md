@@ -10,6 +10,8 @@ Once installed, open these commands on terminal.
 <li><USER\Desktop\Stockflow>: npm install cors body-parser</li>
 <li><USER\Desktop\Stockflow>: npm install pdfkit</li>
 <li><USER\Desktop\Stockflow>: npm install fs</li>
+<li><USER\Desktop\Stockflow>: npm install pipe</li>
+
 
 Now, you'll be able to init the website program.
 
